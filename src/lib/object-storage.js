@@ -62,6 +62,13 @@ const LocalObjectStorage = (dataType) => {
       key,
       expiresInMilliseconds = OBJECT_STORAGE_DEFAULT_EXPIRE_TIME_MILLSECONDS,
     ) {
+      // NOTE: storing the expiresAt parameter like this works, but is not very secure to external
+      // tampering.
+      //
+      // If using this in a production / on premise environment is desired, then doing
+      // something like storing this expiry time into something like redis / a database under a key,
+      // and then specifying that key as a querystring parameter might be a more secure way to
+      // handle this.
       const expiresAt = expiresInMilliseconds !== null ? addMilliseconds(new Date(), expiresInMilliseconds) : null;
       return `${PUBLIC_BASE_URL}/local-object-signed-links/${dataType}/${key}${expiresAt ? `?expiresAt=${expiresAt.toISOString()}` : ''}`;
     },
