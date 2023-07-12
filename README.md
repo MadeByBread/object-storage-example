@@ -13,7 +13,7 @@ $ # Seeds the local object storage with a bunch of profile images and a floorpla
 $ npm run setup
 $
 $ # Start the server - it runs by default on port 5000
-$ PUBLIC_BASE_URL=http://localhost:5000 npm start
+$ OBJECT_STORAGE_IMPLEMENTATION=local PUBLIC_BASE_URL=http://localhost:5000 npm start
 ```
 
 # Object Storage implementations walkthrough
